@@ -1,9 +1,10 @@
-var http = require('http');
+var http = require('http'),
+    static = require('node-static');
 
-var app = http.createServer(onRequest);
-app.listen(8080);
+var fileServer = new static.Server('./public');
 
-function onRequest(req, res) {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello, world!');
-}
+http.createServer(function (request, response) {
+  request.addListener('end', function() {
+    fileServer.serve(request, response);
+  });
+}).listen(process.env.PORT || 5000);
