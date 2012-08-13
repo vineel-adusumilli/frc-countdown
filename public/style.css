@@ -42,6 +42,7 @@ body:before {
 #numbers {
   list-style-type: none;
   font-size: 130px;
+  font-weight: 700;
   line-height: 140px;
 }
 
