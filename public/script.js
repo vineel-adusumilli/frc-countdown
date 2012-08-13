@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var future = new Date(2013, 0, 5, 9);
+  var future = new Date(2013, 0, 5, 10, 30);
   function pad(num) {
     return (String(num).length < 2) ? String("0" + num) : String(num);
   }
