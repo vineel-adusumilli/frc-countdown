@@ -1,5 +1,9 @@
 $(document).ready(function() {
   var future = new Date(2013, 0, 5, 10, 30);
+  // calculate the millisecond difference between local time and EST
+  // EST is hardcoded as UTC -5
+  var offset = (future.getTimezoneOffset() - 5 * 60) * 60 * 1000;
+  future.setTime(future.getTime() + offset);
   function pad(num) {
     return (String(num).length < 2) ? String("0" + num) : String(num);
   }
