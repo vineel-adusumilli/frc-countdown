@@ -1,4 +1,4 @@
-Countdown timer to FRC 2013 Kickoff. Synchronizes time with server using socket.io.
+Countdown timer to [FIRST Robotics Competition](http://www.usfirst.org/roboticsprograms/frc/) 2013 Kickoff.
 
-<http://frc.adusumilli.org/>
+<http://frc.vineel.org/>
 
