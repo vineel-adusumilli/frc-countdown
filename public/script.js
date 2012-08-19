@@ -39,3 +39,17 @@ $(document).ready(function() {
   setInterval(update, 50);
 });
 
+function goBuild() {
+  $('#main').animate({
+    opacity: 0
+  }, 500, 'ease-out', function() {
+    $('#labels').hide();
+    $('#explanation').hide();
+    $('#numbers').css('margin-right', '12px');
+    $('#numbers').text('Kickoff!');
+    $('#main').animate({
+      opacity: 1
+    }, 500, 'ease-in');
+  });
+}
+

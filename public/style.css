@@ -48,6 +48,10 @@ a {
   color: rgb(0, 0, 0);
 }
 
+#numbers, #labels {
+  text-align: right;
+}
+
 #numbers {
   list-style-type: none;
   font-size: 130px;

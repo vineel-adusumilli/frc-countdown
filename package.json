@@ -2,7 +2,8 @@
   "name": "frc-countdown",
   "version": "0.0.1",
   "dependencies": {
-    "node-static": "0.6.x"
+    "node-static": "0.6.x",
+    "socket.io": "0.9.x"
   },
   "engines": {
     "node": "0.8.x",
