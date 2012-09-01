@@ -1,21 +1,48 @@
+var future;
+
 $(document).ready(function() {
-  var future = new Date(2013, 0, 5, 10, 30);
+  future = new Date(2013, 0, 5, 10, 30);
   // calculate the millisecond difference between local time and EST
   // EST is hardcoded as UTC -5
-var offset = (future.getTimezoneOffset() - 5 * 60) * 60 * 1000;
-future.setTime(future.getTime() + offset);
+  var offset = (future.getTimezoneOffset() - 5 * 60) * 60 * 1000;
+  future.setTime(future.getTime() - offset);
   function pad(num) {
     return (String(num).length < 2) ? String("0" + num) : String(num);
   }
 
+  var now = new Date();
+  if (now.getTime() < future.getTime()) {
+    update();
+    $('#main').animate({
+      opacity: 1
+    }, 500, 'ease-in');
+    var tick = setInterval(update, 50);
+  } else {
+    $('#labels').hide();
+    $('#explanation').hide();
+    $('#numbers').css('margin-right', '12px');
+    $('#numbers').text('Kickoff!');
+    $('#main').animate({
+      opacity: 1
+    }, 500, 'ease-in');
+  }
+  
   function update() {
-    var now = new Date();
+    now = new Date();
+    if (now.getTime() >= future.getTime()) {
+      goBuild();
+      clearInterval(tick);
+      return;
+    }
+
     var months = (future.getFullYear() - now.getFullYear()) * 12;
     months += future.getMonth() - now.getMonth();
     if (now.getDate() > future.getDate())
       months--;
-    now.setFullYear(now.getFullYear() + Math.floor((now.getMonth() + months % 12) / 12));
-    now.setMonth(now.getMonth() + months % 12);
+    var month = now.getMonth();
+    var year = now.getFullYear();
+    now.setMonth(month + months % 12);
+    now.setFullYear(year + Math.floor((month + months % 12) / 12));
 
     var delta = future.getTime() - now.getTime();
     delta = Math.floor(delta / 1000);
@@ -35,8 +62,6 @@ future.setTime(future.getTime() + offset);
     $('#numbers .minutes').text(pad(minutes));
     $('#numbers .seconds').text(pad(delta));
   }
-
-  setInterval(update, 50);
 });
 
 function goBuild() {
